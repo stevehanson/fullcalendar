@@ -69,6 +69,7 @@ function BasicView(element, calendar, viewName) {
 	
 	var rowCnt, colCnt;
 	var showNumbers;
+	var showMonthNameOnFirstDay;
 	var coordinateGrid;
 	var hoverListener;
 	var colPositions;
@@ -89,10 +90,11 @@ function BasicView(element, calendar, viewName) {
 	disableTextSelection(element.addClass('fc-grid'));
 	
 	
-	function renderBasic(_rowCnt, _colCnt, _showNumbers) {
+	function renderBasic(_rowCnt, _colCnt, _showNumbers, _showMonthNameOnFirstDay) {
 		rowCnt = _rowCnt;
 		colCnt = _colCnt;
 		showNumbers = _showNumbers;
+		showMonthNameOnFirstDay = _showMonthNameOnFirstDay;
 		updateOptions();
 
 		if (!body) {
@@ -278,7 +280,11 @@ function BasicView(element, calendar, viewName) {
 			"<div>";
 
 		if (showNumbers) {
-			html += "<div class='fc-day-number'>" + date.getDate() + "</div>";
+			var monthName = '';
+			if(showMonthNameOnFirstDay && date.getDate() === 1) {
+				monthName = defaults.monthNamesShort[date.getMonth()];
+			}
+			html += "<div class='fc-day-number'>" + monthName + ' ' + date.getDate() + "</div>";
 		}
 
 		html +=
