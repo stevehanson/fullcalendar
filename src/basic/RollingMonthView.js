@@ -19,12 +19,10 @@ function RollingMonthView(element, calendar) {
 	
 	
 	function render(date, delta) { // delta: if next clicked, =1, if prev, =-1
-		console.log(delta);
 		if (delta > 0) {
 			addDays(date, 7);
 			//date.setDate(1);
 		} else if(delta < 0)  {
-			console.log('subtracting 7');
 			addDays(date, -7);
 		} else {
 			// Initial load
